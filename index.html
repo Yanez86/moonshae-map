@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#14213d">
+  <title>Isole Moonshae</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="bar">
+    <h1 id="title">Isole Moonshae</h1>
+    <nav class="tools">
+      <button type="button" class="btn" data-panel="livelli" aria-expanded="false">Livelli</button>
+      <button type="button" class="btn" data-panel="luoghi" aria-expanded="false">Luoghi <span id="badge-new" class="badge" hidden></span></button>
+      <button type="button" class="btn" id="btn-measure" aria-pressed="false">Righello</button>
+      <button type="button" class="btn btn-dm" id="btn-dm" title="Modalità DM">DM</button>
+    </nav>
+  </header>
+
+  <main id="stage">
+    <canvas id="map" aria-label="Mappa delle Isole Moonshae"></canvas>
+    <p id="loading" class="loading">Carico la mappa…</p>
+
+    <aside id="panel-livelli" class="panel panel-left" hidden>
+      <header><h2>Livelli</h2><button type="button" class="x" data-close aria-label="Chiudi">×</button></header>
+      <h3>Mappa</h3>
+      <div id="list-base" class="checks"></div>
+      <h3>Sovrapposizioni</h3>
+      <div id="list-overlays" class="checks"></div>
+      <div id="dm-overlays" class="checks dm-only" hidden></div>
+    </aside>
+
+    <aside id="panel-luoghi" class="panel panel-right" hidden>
+      <header><h2>Luoghi</h2><button type="button" class="x" data-close aria-label="Chiudi">×</button></header>
+      <input id="search" type="search" placeholder="Cerca un luogo…" autocomplete="off">
+      <div class="row-actions">
+        <select id="filter-type" aria-label="Filtra per tipo"><option value="">Tutti i tipi</option></select>
+        <button type="button" class="btn small" id="btn-seen" hidden>Segna come visti</button>
+      </div>
+      <ul id="place-list" class="places"></ul>
+    </aside>
+
+    <aside id="panel-info" class="panel panel-info" hidden>
+      <header><h2 id="info-title"></h2><button type="button" class="x" data-close aria-label="Chiudi">×</button></header>
+      <div id="info-body"></div>
+    </aside>
+
+    <div class="zoom">
+      <button type="button" class="btn icon" id="zoom-in" aria-label="Avvicina">+</button>
+      <button type="button" class="btn icon" id="zoom-out" aria-label="Allontana">−</button>
+      <button type="button" class="btn icon" id="zoom-fit" aria-label="Mostra tutta la mappa">⤢</button>
+    </div>
+
+    <div id="dm-bar" class="dm-bar" hidden>
+      <button type="button" class="btn" id="dm-add" aria-pressed="false">+ Luogo</button>
+      <button type="button" class="btn" id="dm-explore" aria-pressed="false">Esplora</button>
+      <button type="button" class="btn" id="dm-player" aria-pressed="false">Vista giocatori</button>
+      <button type="button" class="btn btn-gold" id="dm-publish">Pubblica <span id="dirty" class="badge" hidden>•</span></button>
+      <button type="button" class="btn" id="dm-menu" aria-haspopup="true">Altro</button>
+      <div id="dm-menu-list" class="menu" hidden>
+        <button type="button" id="dm-settings">Impostazioni</button>
+        <button type="button" id="dm-export">Esporta campaign.json</button>
+        <button type="button" id="dm-import">Importa campaign.json</button>
+        <button type="button" id="dm-lock">Esci dalla modalità DM</button>
+      </div>
+      <input type="file" id="import-file" accept="application/json,.json" hidden>
+    </div>
+
+    <p id="mode-hint" class="mode-hint" hidden></p>
+
+    <footer class="status">
+      <span id="status-hex">—</span>
+      <span id="status-terrain"></span>
+      <span class="scale"><span id="scale-bar"></span><span id="scale-text"></span></span>
+    </footer>
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+  </main>
+
+  <dialog id="dlg-password" class="dialog">
+    <form method="dialog">
+      <h2 id="pw-title">Modalità DM</h2>
+      <p id="pw-text"></p>
+      <label>Password <input id="pw-1" type="password" autocomplete="current-password" required></label>
+      <label id="pw-2-row" hidden>Ripeti la password <input id="pw-2" type="password" autocomplete="new-password"></label>
+      <p id="pw-error" class="error" hidden></p>
+      <menu>
+        <button type="button" class="btn" value="cancel" data-cancel>Annulla</button>
+        <button type="submit" class="btn btn-gold" value="ok" id="pw-ok">Entra</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-marker" class="dialog">
+    <form method="dialog">
+      <h2 id="mk-title">Nuovo luogo</h2>
+      <label>Nome <input id="mk-name" maxlength="80" autocomplete="off"></label>
+      <label>Tipo <select id="mk-type"></select></label>
+      <label>Descrizione per i giocatori <textarea id="mk-text" rows="4" placeholder="Quello che i giocatori sanno. **grassetto**, *corsivo*"></textarea></label>
+      <label>Note del DM (mai visibili ai giocatori) <textarea id="mk-notes" rows="3"></textarea></label>
+      <label class="check"><input id="mk-visible" type="checkbox"> Visibile ai giocatori</label>
+      <label class="check"><input id="mk-snap" type="checkbox"> Al centro dell'esagono</label>
+      <menu>
+        <button type="button" class="btn danger" id="mk-delete" hidden>Elimina</button>
+        <span class="grow"></span>
+        <button type="button" class="btn" data-cancel>Annulla</button>
+        <button type="submit" class="btn btn-gold" value="ok">Salva</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-settings" class="dialog">
+    <form method="dialog">
+      <h2>Impostazioni</h2>
+      <fieldset>
+        <legend>Campagna</legend>
+        <label>Titolo <input id="st-title" maxlength="60"></label>
+        <label>Dimensione degli esagoni <select id="st-hex"></select></label>
+        <label class="check"><input id="st-fog" type="checkbox"> Nebbia sugli esagoni non esplorati</label>
+      </fieldset>
+      <fieldset>
+        <legend>Pubblicazione su GitHub</legend>
+        <div class="two">
+          <label>Utente <input id="gh-owner" autocomplete="off"></label>
+          <label>Repository <input id="gh-repo" autocomplete="off"></label>
+        </div>
+        <div class="two">
+          <label>Ramo <input id="gh-branch" autocomplete="off"></label>
+          <label>File <input id="gh-path" autocomplete="off"></label>
+        </div>
+        <label>Token (fine-grained, Contents: read and write) <input id="gh-token" type="password" autocomplete="off"></label>
+        <label class="check"><input id="gh-remember" type="checkbox"> Ricorda il token su questo dispositivo</label>
+      </fieldset>
+      <fieldset>
+        <legend>Sicurezza</legend>
+        <button type="button" class="btn" id="st-password">Cambia la password del DM</button>
+      </fieldset>
+      <menu>
+        <button type="button" class="btn" data-cancel>Annulla</button>
+        <button type="submit" class="btn btn-gold" value="ok">Salva</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-confirm" class="dialog">
+    <form method="dialog">
+      <h2 id="cf-title"></h2>
+      <p id="cf-text"></p>
+      <menu>
+        <button type="button" class="btn" data-cancel>Annulla</button>
+        <button type="submit" class="btn btn-gold" value="ok" id="cf-ok">Conferma</button>
+      </menu>
+    </form>
+  </dialog>
+</body>
+</html>

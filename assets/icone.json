@@ -1,0 +1,590 @@
+{
+ "frames": {
+  "icona_capitale": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 13
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 13
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 13
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_caer": {
+   "frame": {
+    "x": 14,
+    "y": 0,
+    "w": 13,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 10
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_citta": {
+   "frame": {
+    "x": 28,
+    "y": 0,
+    "w": 13,
+    "h": 11
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 11
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 11
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_villaggio": {
+   "frame": {
+    "x": 42,
+    "y": 0,
+    "w": 11,
+    "h": 9
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 9
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 9
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_porto": {
+   "frame": {
+    "x": 54,
+    "y": 0,
+    "w": 11,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 12
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_rovina": {
+   "frame": {
+    "x": 0,
+    "y": 14,
+    "w": 11,
+    "h": 9
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 9
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 9
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_dungeon": {
+   "frame": {
+    "x": 12,
+    "y": 14,
+    "w": 13,
+    "h": 9
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 9
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 9
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_tempio": {
+   "frame": {
+    "x": 26,
+    "y": 14,
+    "w": 13,
+    "h": 11
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 11
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 11
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_pozzo_lunare": {
+   "frame": {
+    "x": 40,
+    "y": 14,
+    "w": 13,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 12
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_cerchio": {
+   "frame": {
+    "x": 54,
+    "y": 14,
+    "w": 13,
+    "h": 8
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 8
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 8
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_torre": {
+   "frame": {
+    "x": 0,
+    "y": 27,
+    "w": 11,
+    "h": 13
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 13
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 13
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_accampamento": {
+   "frame": {
+    "x": 12,
+    "y": 27,
+    "w": 13,
+    "h": 9
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 9
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 9
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_tana": {
+   "frame": {
+    "x": 26,
+    "y": 27,
+    "w": 11,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 10
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_battaglia": {
+   "frame": {
+    "x": 38,
+    "y": 27,
+    "w": 13,
+    "h": 13
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 13
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 13
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_tesoro": {
+   "frame": {
+    "x": 52,
+    "y": 27,
+    "w": 13,
+    "h": 9
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 9
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 9
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_missione": {
+   "frame": {
+    "x": 0,
+    "y": 41,
+    "w": 7,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 7,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 7,
+    "h": 10
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_png": {
+   "frame": {
+    "x": 8,
+    "y": 41,
+    "w": 11,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 10
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_relitto": {
+   "frame": {
+    "x": 20,
+    "y": 41,
+    "w": 13,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 10
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_faro": {
+   "frame": {
+    "x": 34,
+    "y": 41,
+    "w": 11,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 12
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_portale": {
+   "frame": {
+    "x": 46,
+    "y": 41,
+    "w": 11,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 10
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_bosco_sacro": {
+   "frame": {
+    "x": 0,
+    "y": 54,
+    "w": 13,
+    "h": 11
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 11
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 11
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_gruppo": {
+   "frame": {
+    "x": 14,
+    "y": 54,
+    "w": 11,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 11,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 11,
+    "h": 12
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_nave": {
+   "frame": {
+    "x": 26,
+    "y": 54,
+    "w": 13,
+    "h": 11
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 13,
+    "h": 11
+   },
+   "sourceSize": {
+    "w": 13,
+    "h": 11
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  },
+  "icona_segnaposto": {
+   "frame": {
+    "x": 40,
+    "y": 54,
+    "w": 9,
+    "h": 10
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 9,
+    "h": 10
+   },
+   "sourceSize": {
+    "w": 9,
+    "h": 10
+   },
+   "pivot": {
+    "x": 0.5,
+    "y": 0.5
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "icone.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 67,
+   "h": 66
+  },
+  "scale": "1"
+ }
+}

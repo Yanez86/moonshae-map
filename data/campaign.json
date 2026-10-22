@@ -1,0 +1,25 @@
+{
+ "format": "moonshae-campagna",
+ "version": 1,
+ "rev": 1,
+ "updated": "2026-10-22T00:00:00.000Z",
+ "settings": { "title": "Isole Moonshae", "hexMiles": 6, "fog": false },
+ "markers": [
+  { "id": "caer-callidyrr", "type": "capitale", "name": "Caer Callidyrr", "x": 650, "y": 265, "text": "Capitale delle Moonshae e sede storica della dinastia Kendrick, fra l'estremità meridionale dei Monti Fairheight e la Baia di Whitefish. Il **Palazzo dell'Alto Re** è la costruzione più alta delle isole." },
+  { "id": "caer-corwell", "type": "caer", "name": "Caer Corwell", "x": 345, "y": 500, "text": "Castello e porto del regno di Corwell, nel sud di Gwynneth, in cima al Firth di Corwell. Sotto le mura c'è la città di Corwell." },
+  { "id": "kingsbay", "type": "citta", "name": "Kingsbay", "x": 530, "y": 520, "text": "Il porto orientale di Corwell, dove finisce la Foresta di Llyrath." },
+  { "id": "dynnatt", "type": "villaggio", "name": "Dynnatt", "x": 321, "y": 517, "text": "Cittadina nel cuore di Corwell, a sud-ovest di Caer Corwell." },
+  { "id": "gnarhelm", "type": "citta", "name": "Gnarhelm", "x": 507, "y": 103, "text": "Città e regno dei Northlander nella metà settentrionale di Alaron, oltre i Monti Fairheight." },
+  { "id": "sunderstaad", "type": "villaggio", "name": "Sunderstaad", "x": 575, "y": 58, "text": "Villaggio sulla punta settentrionale di Alaron." },
+  { "id": "kythyss", "type": "porto", "name": "Kythyss", "x": 593, "y": 380, "text": "Porto sul Grande Capo Sud di Alaron, rivolto verso Snowdown." },
+  { "id": "caer-westphal", "type": "caer", "name": "Caer Westphal", "x": 600, "y": 452, "text": "La città più grande di Snowdown e sede del suo regno." },
+  { "id": "iron-keep", "type": "caer", "name": "Iron Keep", "x": 350, "y": 205, "text": "La fortezza dei re Northlander di Oman, sulla costa meridionale dell'isola." },
+  { "id": "rogarsheim", "type": "citta", "name": "Rogarsheim", "x": 230, "y": 262, "text": "Capitale di Norland, sulla costa orientale riparata dalle montagne." },
+  { "id": "hammerstaad", "type": "citta", "name": "Hammerstaad", "x": 168, "y": 82, "text": "Capitale del regno di Norheim, fra le isole rocciose del nord-ovest." },
+  { "id": "greystaad", "type": "villaggio", "name": "Greystaad", "x": 212, "y": 128, "text": "Villaggio sulla punta meridionale di Graygruun, sullo Stretto del Vento del Nord." },
+  { "id": "caer-moray", "type": "caer", "name": "Caer Moray", "x": 212, "y": 462, "text": "Antica roccaforte del regno di Moray, isola di brughiere selvagge e foreste scure." },
+  { "id": "torre-di-flamsterd", "type": "rovina", "name": "Torre di Flamsterd", "x": 215, "y": 592, "text": "Rovine della torre del mago Flamsterd. L'esplosione che la distrusse fece sprofondare metà dell'isola: al largo, a sud, il mare è ancora basso." }
+ ],
+ "explored": [],
+ "secret": null
+}
