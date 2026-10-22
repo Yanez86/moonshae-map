@@ -3,22 +3,613 @@
  "version": 1,
  "rev": 1,
  "updated": "2026-10-22T00:00:00.000Z",
- "settings": { "title": "Isole Moonshae", "hexMiles": 6, "fog": false },
+ "settings": {
+  "title": "Isole Moonshae",
+  "hexMiles": 6,
+  "fog": false
+ },
  "markers": [
-  { "id": "caer-callidyrr", "type": "capitale", "name": "Caer Callidyrr", "x": 650, "y": 265, "text": "Capitale delle Moonshae e sede storica della dinastia Kendrick, fra l'estremità meridionale dei Monti Fairheight e la Baia di Whitefish. Il **Palazzo dell'Alto Re** è la costruzione più alta delle isole." },
-  { "id": "caer-corwell", "type": "caer", "name": "Caer Corwell", "x": 345, "y": 500, "text": "Castello e porto del regno di Corwell, nel sud di Gwynneth, in cima al Firth di Corwell. Sotto le mura c'è la città di Corwell." },
-  { "id": "kingsbay", "type": "citta", "name": "Kingsbay", "x": 530, "y": 520, "text": "Il porto orientale di Corwell, dove finisce la Foresta di Llyrath." },
-  { "id": "dynnatt", "type": "villaggio", "name": "Dynnatt", "x": 321, "y": 517, "text": "Cittadina nel cuore di Corwell, a sud-ovest di Caer Corwell." },
-  { "id": "gnarhelm", "type": "citta", "name": "Gnarhelm", "x": 507, "y": 103, "text": "Città e regno dei Northlander nella metà settentrionale di Alaron, oltre i Monti Fairheight." },
-  { "id": "sunderstaad", "type": "villaggio", "name": "Sunderstaad", "x": 575, "y": 58, "text": "Villaggio sulla punta settentrionale di Alaron." },
-  { "id": "kythyss", "type": "porto", "name": "Kythyss", "x": 593, "y": 380, "text": "Porto sul Grande Capo Sud di Alaron, rivolto verso Snowdown." },
-  { "id": "caer-westphal", "type": "caer", "name": "Caer Westphal", "x": 600, "y": 452, "text": "La città più grande di Snowdown e sede del suo regno." },
-  { "id": "iron-keep", "type": "caer", "name": "Iron Keep", "x": 350, "y": 205, "text": "La fortezza dei re Northlander di Oman, sulla costa meridionale dell'isola." },
-  { "id": "rogarsheim", "type": "citta", "name": "Rogarsheim", "x": 230, "y": 262, "text": "Capitale di Norland, sulla costa orientale riparata dalle montagne." },
-  { "id": "hammerstaad", "type": "citta", "name": "Hammerstaad", "x": 168, "y": 82, "text": "Capitale del regno di Norheim, fra le isole rocciose del nord-ovest." },
-  { "id": "greystaad", "type": "villaggio", "name": "Greystaad", "x": 212, "y": 128, "text": "Villaggio sulla punta meridionale di Graygruun, sullo Stretto del Vento del Nord." },
-  { "id": "caer-moray", "type": "caer", "name": "Caer Moray", "x": 212, "y": 462, "text": "Antica roccaforte del regno di Moray, isola di brughiere selvagge e foreste scure." },
-  { "id": "torre-di-flamsterd", "type": "rovina", "name": "Torre di Flamsterd", "x": 215, "y": 592, "text": "Rovine della torre del mago Flamsterd. L'esplosione che la distrusse fece sprofondare metà dell'isola: al largo, a sud, il mare è ancora basso." }
+  {
+   "id": "caer-callidyrr",
+   "type": "capitale",
+   "name": "Caer Callidyrr",
+   "x": 205.5,
+   "y": 146.6,
+   "text": "Capitale del regno delle Moonshae e sede degli Alti Re Kendrick, affacciata sulla Baia di Whitefish."
+  },
+  {
+   "id": "blackstone",
+   "type": "citta",
+   "name": "Blackstone",
+   "x": 183.9,
+   "y": 137.5,
+   "text": "Grande città ai piedi della Catena di Fairheight, dove la strada di Callidyrr incontra il Vasty Drink."
+  },
+  {
+   "id": "gnarhelm",
+   "type": "citta",
+   "name": "Gnarhelm",
+   "x": 196.9,
+   "y": 91.9,
+   "text": "Capitale del regno Northlander di Gnarhelm, in fondo alla Baia dei Salmoni."
+  },
+  {
+   "id": "white-rock",
+   "type": "citta",
+   "name": "White Rock",
+   "x": 202.1,
+   "y": 130.7
+  },
+  {
+   "id": "ogden",
+   "type": "citta",
+   "name": "Ogden",
+   "x": 211.4,
+   "y": 166.5
+  },
+  {
+   "id": "doncastle",
+   "type": "citta",
+   "name": "Doncastle",
+   "x": 199.4,
+   "y": 181.3
+  },
+  {
+   "id": "horsa",
+   "type": "citta",
+   "name": "Horsa",
+   "x": 213.2,
+   "y": 180.2,
+   "text": "Sulla Strada dell'Alto Re, dove il fiume Swanmay esce dalla Foresta di Dernall."
+  },
+  {
+   "id": "regent-s-field",
+   "type": "citta",
+   "name": "Regent's Field",
+   "x": 213.6,
+   "y": 199.7
+  },
+  {
+   "id": "blythe",
+   "type": "citta",
+   "name": "Blythe",
+   "x": 240.5,
+   "y": 200.3
+  },
+  {
+   "id": "pembroke",
+   "type": "citta",
+   "name": "Pembroke",
+   "x": 230.2,
+   "y": 208
+  },
+  {
+   "id": "grady",
+   "type": "citta",
+   "name": "Grady",
+   "x": 215.5,
+   "y": 224.7
+  },
+  {
+   "id": "dorset",
+   "type": "citta",
+   "name": "Dorset",
+   "x": 227.4,
+   "y": 235.7
+  },
+  {
+   "id": "llewellyn",
+   "type": "citta",
+   "name": "Llewellyn",
+   "x": 216.7,
+   "y": 246.6,
+   "text": "Porto sul Porto di Llewellyn, lungo la Strada dell'Alto Re."
+  },
+  {
+   "id": "kythyss",
+   "type": "citta",
+   "name": "Kythyss",
+   "x": 219.4,
+   "y": 264.4,
+   "text": "Porto sul Grande Capo Sud di Alaron, in fondo alla Strada dell'Alto Re."
+  },
+  {
+   "id": "sunderstaad",
+   "type": "citta",
+   "name": "Sunderstaad",
+   "x": 225.6,
+   "y": 60.2
+  },
+  {
+   "id": "highrock",
+   "type": "citta",
+   "name": "Highrock",
+   "x": 235,
+   "y": 105.2
+  },
+  {
+   "id": "olafstaad",
+   "type": "citta",
+   "name": "Olafstaad",
+   "x": 147.6,
+   "y": 128.1
+  },
+  {
+   "id": "lehigh",
+   "type": "villaggio",
+   "name": "Lehigh",
+   "x": 207.3,
+   "y": 153.9
+  },
+  {
+   "id": "bounty",
+   "type": "villaggio",
+   "name": "Bounty",
+   "x": 208.1,
+   "y": 157.4
+  },
+  {
+   "id": "cobh",
+   "type": "villaggio",
+   "name": "Cobh",
+   "x": 236,
+   "y": 165.9
+  },
+  {
+   "id": "holyhead",
+   "type": "villaggio",
+   "name": "Holyhead",
+   "x": 182.4,
+   "y": 168.2
+  },
+  {
+   "id": "aithelar",
+   "type": "villaggio",
+   "name": "Aithelar",
+   "x": 187.5,
+   "y": 172
+  },
+  {
+   "id": "hickorydale",
+   "type": "villaggio",
+   "name": "Hickorydale",
+   "x": 196.4,
+   "y": 187.1
+  },
+  {
+   "id": "codfin",
+   "type": "villaggio",
+   "name": "Codfin",
+   "x": 184.9,
+   "y": 191.7
+  },
+  {
+   "id": "otta",
+   "type": "villaggio",
+   "name": "Otta",
+   "x": 155.4,
+   "y": 105.2
+  },
+  {
+   "id": "warlsbry",
+   "type": "villaggio",
+   "name": "Warlsbry",
+   "x": 163.4,
+   "y": 149.2
+  },
+  {
+   "id": "rogarsheim",
+   "type": "citta",
+   "name": "Rogarsheim",
+   "x": 55,
+   "y": 140,
+   "text": "Capitale fortificata di Norland, sulla Baia di Norland."
+  },
+  {
+   "id": "gudbrandstad",
+   "type": "villaggio",
+   "name": "Gudbrandstad",
+   "x": 28,
+   "y": 150.6
+  },
+  {
+   "id": "arfinnsheim",
+   "type": "villaggio",
+   "name": "Arfinnsheim",
+   "x": 25,
+   "y": 156.5
+  },
+  {
+   "id": "arndtbergom",
+   "type": "villaggio",
+   "name": "Arndtbergom",
+   "x": 44.6,
+   "y": 162.7
+  },
+  {
+   "id": "follebu",
+   "type": "villaggio",
+   "name": "Follebu",
+   "x": 47.6,
+   "y": 169
+  },
+  {
+   "id": "sommersdal",
+   "type": "villaggio",
+   "name": "Sommersdal",
+   "x": 40,
+   "y": 182
+  },
+  {
+   "id": "sordal",
+   "type": "villaggio",
+   "name": "Sordal",
+   "x": 27.5,
+   "y": 189
+  },
+  {
+   "id": "threlloch",
+   "type": "villaggio",
+   "name": "Threlloch",
+   "x": 65,
+   "y": 68,
+   "text": "Villaggio sull'isola di Canthrell."
+  },
+  {
+   "id": "hammerstaad",
+   "type": "citta",
+   "name": "Hammerstaad",
+   "x": 97.5,
+   "y": 43.5,
+   "text": "Città fortificata di Jotunspine, ai piedi della Catena Giantspine."
+  },
+  {
+   "id": "seawolf",
+   "type": "citta",
+   "name": "Seawolf",
+   "x": 124,
+   "y": 30.5,
+   "text": "Porto del regno di Norheim, sullo Stretto del Vento del Nord."
+  },
+  {
+   "id": "greystaad",
+   "type": "villaggio",
+   "name": "Greystaad",
+   "x": 146.3,
+   "y": 30.9,
+   "text": "Villaggio di Graygruun."
+  },
+  {
+   "id": "dalheim",
+   "type": "villaggio",
+   "name": "Dalheim",
+   "x": 137.4,
+   "y": 45.2,
+   "text": "Villaggio di Llorgh."
+  },
+  {
+   "id": "rottesheim",
+   "type": "villaggio",
+   "name": "Rottesheim",
+   "x": 164.5,
+   "y": 7.2
+  },
+  {
+   "id": "caftenor",
+   "type": "villaggio",
+   "name": "Caftenor",
+   "x": 200.4,
+   "y": 31.3,
+   "text": "Villaggio di Craftenor, nell'Arcipelago di Korinn."
+  },
+  {
+   "id": "highport",
+   "type": "villaggio",
+   "name": "Highport",
+   "x": 219,
+   "y": 19,
+   "text": "Porto dell'Arcipelago di Korinn."
+  },
+  {
+   "id": "iron-keep",
+   "type": "rovina",
+   "name": "Iron Keep",
+   "x": 110.4,
+   "y": 188.7,
+   "text": "Rovine della rocca dei re Northlander di Oman, sulla Baia di Ferro. Oggi Oman è terra di fomorian e firbolg."
+  },
+  {
+   "id": "lillemaren",
+   "type": "rovina",
+   "name": "Lillemaren",
+   "x": 125.7,
+   "y": 192
+  },
+  {
+   "id": "skien",
+   "type": "rovina",
+   "name": "Skien",
+   "x": 86.6,
+   "y": 192
+  },
+  {
+   "id": "trondhelm",
+   "type": "rovina",
+   "name": "Trondhelm",
+   "x": 86.8,
+   "y": 199.4
+  },
+  {
+   "id": "ramshorn",
+   "type": "rovina",
+   "name": "Ramshorn",
+   "x": 125.3,
+   "y": 211.1
+  },
+  {
+   "id": "caer-moray",
+   "type": "caer",
+   "name": "Caer Moray",
+   "x": 36.5,
+   "y": 236.5,
+   "text": "Antica roccaforte del regno di Moray, ai piedi della Catena Trolldaw."
+  },
+  {
+   "id": "kork",
+   "type": "citta",
+   "name": "Kork",
+   "x": 51.3,
+   "y": 259.5
+  },
+  {
+   "id": "horst",
+   "type": "citta",
+   "name": "Horst",
+   "x": 37.2,
+   "y": 263.2
+  },
+  {
+   "id": "farview",
+   "type": "citta",
+   "name": "Farview",
+   "x": 24.5,
+   "y": 262.6
+  },
+  {
+   "id": "dynnegall",
+   "type": "citta",
+   "name": "Dynnegall",
+   "x": 37.5,
+   "y": 245.5
+  },
+  {
+   "id": "bray",
+   "type": "villaggio",
+   "name": "Bray",
+   "x": 55,
+   "y": 238
+  },
+  {
+   "id": "caer-westphal",
+   "type": "caer",
+   "name": "Caer Westphal",
+   "x": 231.9,
+   "y": 328,
+   "text": "La città più grande di Snowdown e sede del suo regno."
+  },
+  {
+   "id": "llandrain",
+   "type": "citta",
+   "name": "Llandrain",
+   "x": 234.4,
+   "y": 300.4
+  },
+  {
+   "id": "harloch",
+   "type": "citta",
+   "name": "Harloch",
+   "x": 241.3,
+   "y": 313.8
+  },
+  {
+   "id": "brannoch",
+   "type": "citta",
+   "name": "Brannoch",
+   "x": 254.7,
+   "y": 319
+  },
+  {
+   "id": "pengram",
+   "type": "citta",
+   "name": "Pengram",
+   "x": 217.2,
+   "y": 338.8
+  },
+  {
+   "id": "karador",
+   "type": "capitale",
+   "name": "Karador",
+   "x": 145,
+   "y": 303.2,
+   "text": "Capitale di Sarifal, il regno degli eladrin, sulle rive del Myrloch."
+  },
+  {
+   "id": "synnoria",
+   "type": "citta",
+   "name": "Synnoria",
+   "x": 164.6,
+   "y": 315.3,
+   "text": "La città nascosta degli elfi llewyrr."
+  },
+  {
+   "id": "caer-corwell",
+   "type": "caer",
+   "name": "Caer Corwell",
+   "x": 143.5,
+   "y": 324.5,
+   "text": "Il castello dei Kendrick, in cima al Firth di Corwell."
+  },
+  {
+   "id": "kingsbay",
+   "type": "rovina",
+   "name": "Kingsbay",
+   "x": 193,
+   "y": 321.7
+  },
+  {
+   "id": "koart",
+   "type": "rovina",
+   "name": "Koart",
+   "x": 152.7,
+   "y": 325.7
+  },
+  {
+   "id": "o-malley",
+   "type": "rovina",
+   "name": "O'Malley",
+   "x": 170.3,
+   "y": 324.7
+  },
+  {
+   "id": "horstall",
+   "type": "rovina",
+   "name": "Horstall",
+   "x": 189.2,
+   "y": 333.2
+  },
+  {
+   "id": "borth",
+   "type": "rovina",
+   "name": "Borth",
+   "x": 195,
+   "y": 302.4
+  },
+  {
+   "id": "myrrdale",
+   "type": "rovina",
+   "name": "Myrrdale",
+   "x": 174,
+   "y": 307.9
+  },
+  {
+   "id": "macsheehan",
+   "type": "rovina",
+   "name": "MacSheehan",
+   "x": 175.8,
+   "y": 315
+  },
+  {
+   "id": "thorndyke",
+   "type": "rovina",
+   "name": "Thorndyke",
+   "x": 168.4,
+   "y": 296
+  },
+  {
+   "id": "dultann",
+   "type": "rovina",
+   "name": "Dultann",
+   "x": 173.9,
+   "y": 284
+  },
+  {
+   "id": "highhome",
+   "type": "rovina",
+   "name": "Highhome",
+   "x": 156.2,
+   "y": 285.3
+  },
+  {
+   "id": "caervu",
+   "type": "rovina",
+   "name": "Caervu",
+   "x": 179.5,
+   "y": 269.2
+  },
+  {
+   "id": "cambro",
+   "type": "rovina",
+   "name": "Cambro",
+   "x": 156.9,
+   "y": 263.7
+  },
+  {
+   "id": "codscove",
+   "type": "rovina",
+   "name": "Codscove",
+   "x": 136.7,
+   "y": 219
+  },
+  {
+   "id": "grimstad",
+   "type": "rovina",
+   "name": "Grimstad",
+   "x": 166.4,
+   "y": 204.9
+  },
+  {
+   "id": "manger",
+   "type": "rovina",
+   "name": "Manger",
+   "x": 110,
+   "y": 238
+  },
+  {
+   "id": "storaad",
+   "type": "rovina",
+   "name": "Storaad",
+   "x": 68.2,
+   "y": 268
+  },
+  {
+   "id": "fenton",
+   "type": "rovina",
+   "name": "Fenton",
+   "x": 79.2,
+   "y": 309.3
+  },
+  {
+   "id": "elyssyr",
+   "type": "rovina",
+   "name": "Elyssyr",
+   "x": 118,
+   "y": 318.9
+  },
+  {
+   "id": "pontswain",
+   "type": "rovina",
+   "name": "Pontswain",
+   "x": 110.6,
+   "y": 334.6
+  },
+  {
+   "id": "graystone",
+   "type": "rovina",
+   "name": "Graystone",
+   "x": 84.5,
+   "y": 344.8
+  },
+  {
+   "id": "wyngate",
+   "type": "rovina",
+   "name": "Wyngate",
+   "x": 78.4,
+   "y": 379.4
+  },
+  {
+   "id": "dynnatt",
+   "type": "rovina",
+   "name": "Dynnatt",
+   "x": 137.4,
+   "y": 332.2
+  },
+  {
+   "id": "hyoclaatl",
+   "type": "rovina",
+   "name": "Hyoclaatl",
+   "x": 80.5,
+   "y": 384.3
+  }
  ],
  "explored": [],
  "secret": null

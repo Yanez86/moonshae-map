@@ -22,6 +22,9 @@ po' alla volta. È un sito statico pensato per GitHub Pages: niente server, nien
    - una scadenza a piacere (alla scadenza se ne crea un altro)
 3. **Apri il sito, premi DM e crea la password del DM** (almeno 10 caratteri). È l'unica chiave dei
    segreti: **non si può recuperare**, conservala in un gestore di password.
+   Alla prima password l'app propone di aggiungere i luoghi notevoli della mappa ufficiale
+   (dungeon, rovine, pozzi lunari, rocche: `data/suggeriti.json`), già **nascosti**. Dopo la prima
+   pubblicazione puoi cancellare `data/suggeriti.json` dal repository: da lì in poi stanno cifrati.
 4. In **Altro → Impostazioni** incolla il token (utente e repository di solito sono già compilati)
    e premi **Pubblica**. Da qui in avanti il file della campagna contiene i segreti cifrati.
 
@@ -65,10 +68,16 @@ potrebbe provarle tutte.
 
 ## La mappa
 
-La mappa è disegnata in codice con [pxl](https://github.com/augusto-scarvalho/claude-pxl), un
+La geografia segue la mappa ufficiale delle Moonshae: coste, laghi, foreste, catene montuose e
+fondali sono ricalcati da quella mappa in [`art/geo.px.js`](art/geo.px.js) (2 px per miglio, scala
+dell'originale: circa 270×390 miglia), città e luoghi notevoli sono nelle posizioni dell'originale.
+Il ricalco lo fa [`art/estrai-geo.mjs`](art/estrai-geo.mjs) da uno screenshot della mappa ufficiale,
+che non è nel repository: `node art/estrai-geo.mjs mappa.jpg` (serve Playwright).
+
+La pixel art è disegnata in codice con [pxl](https://github.com/augusto-scarvalho/claude-pxl), un
 linguaggio per la pixel art: tutto sta in [`art/moonshae.px.js`](art/moonshae.px.js). Ci sono la
-geografia (isole, catene montuose, foreste, paludi, fiumi, insediamenti, in miglia), la palette,
-gli sprite di alberi, montagne e colline, i nomi geografici e le icone dei luoghi.
+palette, il suolo, gli sprite di alberi, montagne e colline, i nomi geografici e le icone dei luoghi;
+paludi, brughiere e saline sono regioni a mano, le posizioni dei luoghi sono in `art/luoghi.px.js`.
 
 ```sh
 # con un clone di pxl (Node 22.18 o più recente)
@@ -79,11 +88,10 @@ art/build.sh
 
 `build.sh` rigenera i livelli in `assets/mappa/` (mare, terra, fiumi, foreste, rilievi, nomi), la
 mappa dei biomi usata per il terreno di ogni esagono (`dati.png`) e il foglio delle icone.
-La scala è di 2 pixel per miglio; il file della campagna usa coordinate in miglia, quindi i
-luoghi già piazzati restano al loro posto anche se ritocchi la mappa.
-
-La geografia è una ricostruzione libera fatta per questa campagna, non la mappa ufficiale. Se una
-città non è dove la ricordi, trascinala in modalità DM.
+La mappa è a 4 pixel per miglio; il file della campagna usa coordinate in miglia, quindi i
+luoghi già piazzati restano al loro posto anche se ritocchi la mappa. Le posizioni sono lette a
+occhio dall'originale, con un margine di un miglio o due: se una città non è al posto giusto,
+trascinala in modalità DM.
 
 ## Provarlo in locale
 
@@ -103,7 +111,8 @@ Poi apri l'indirizzo che stampa. La cifratura del browser richiede `localhost` o
 | `js/store.js`, `js/crypto.js`, `js/github.js` | file della campagna, cifratura, API di GitHub |
 | `js/config.js` | livelli, tipi di luogo, biomi, andature |
 | `data/campaign.json` | la campagna pubblicata |
-| `art/` | la mappa in pxl e lo script che la ricostruisce |
+| `data/suggeriti.json` | luoghi notevoli da aggiungere nascosti alla prima password |
+| `art/` | la mappa in pxl, la geografia ricalcata e gli script che le ricostruiscono |
 | `assets/` | i PNG generati da pxl |
 
 ## Crediti
@@ -111,5 +120,6 @@ Poi apri l'indirizzo che stampa. La cifratura del browser richiede `localhost` o
 - Mappa e icone disegnate con [pxl](https://github.com/augusto-scarvalho/claude-pxl) (licenza MIT),
   compreso il suo font 5×7 (`art/font5x7.px.js`).
 - Font dell'interfaccia: [Pixelify Sans](https://fonts.google.com/specimen/Pixelify+Sans) (SIL Open Font License).
-- Forgotten Realms, Moonshae e Dungeons & Dragons sono marchi di Wizards of the Coast. Questo è un
+- Geografia, nomi e luoghi vengono dalla mappa ufficiale delle Moonshae di Wizards of the Coast.
+  Forgotten Realms, Moonshae e Dungeons & Dragons sono marchi di Wizards of the Coast. Questo è un
   progetto amatoriale per uso privato, senza alcun legame con Wizards of the Coast.

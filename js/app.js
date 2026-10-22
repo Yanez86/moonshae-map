@@ -501,6 +501,7 @@ async function enterDm() {
     state.markers = markers
     state.dm = true
     state.dirty = fresh
+    if (fresh) await offerSuggested()
     const draft = await loadDraft(vault)
     if (draft && draft.baseRev >= state.rev && await confirmBox("Bozza non pubblicata",
       `Su questo dispositivo c'è una bozza del ${new Date(draft.at).toLocaleString("it-IT")} con modifiche non pubblicate. Vuoi riprenderla?`, "Riprendi")) {
@@ -515,6 +516,21 @@ async function enterDm() {
     toast(e.message, "err")
     if (e.message === "Password sbagliata.") enterDm()
   }
+}
+
+// Alla prima password: i luoghi notevoli della mappa ufficiale (data/suggeriti.json), già nascosti.
+async function offerSuggested() {
+  let list
+  try {
+    const res = await fetch(`data/suggeriti.json?t=${Date.now()}`, { cache: "no-store" })
+    if (!res.ok) return
+    list = (await res.json()).markers || []
+  } catch { return }
+  const ids = new Set(state.markers.map((m) => m.id))
+  const add = list.filter((m) => !ids.has(m.id))
+  if (!add.length || !await confirmBox("Luoghi della mappa ufficiale",
+    `Vuoi aggiungere ${add.length} luoghi notevoli della mappa ufficiale (dungeon, rovine, pozzi lunari, rocche)? Saranno nascosti ai giocatori finché non li riveli.`, "Aggiungi")) return
+  state.markers.push(...add.map((m) => ({ ...m, hidden: true })))
 }
 
 async function leaveDm() {

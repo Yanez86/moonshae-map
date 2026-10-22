@@ -1,0 +1,508 @@
+{
+ "markers": [
+  {
+   "id": "faro-delle-tre-guglie",
+   "type": "faro",
+   "name": "Faro delle Tre Guglie",
+   "x": 31,
+   "y": 58.8,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Tri-Spired Lighthouse."
+  },
+  {
+   "id": "pozze-di-catrame-di-tvarstoldt",
+   "type": "battaglia",
+   "name": "Pozze di catrame di Tvarstoldt",
+   "x": 29,
+   "y": 79,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Tvarstoldt Tar Pits."
+  },
+  {
+   "id": "tana-della-viverna-mannara",
+   "type": "tana",
+   "name": "Tana della viverna mannara",
+   "x": 58,
+   "y": 100,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Lair of the Werewyvern."
+  },
+  {
+   "id": "l-accademia-sommersa",
+   "type": "rovina",
+   "name": "L'Accademia Sommersa",
+   "x": 35,
+   "y": 109,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: The Sunken Academy."
+  },
+  {
+   "id": "hjalmaren",
+   "type": "segnaposto",
+   "name": "Hjalmaren",
+   "x": 42,
+   "y": 178,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Hjalmaren (picco)."
+  },
+  {
+   "id": "caer-allisynn-seconda-posizione",
+   "type": "caer",
+   "name": "Caer Allisynn (seconda posizione)",
+   "x": 108.6,
+   "y": 147.6,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Caer Allisynn (Second Location)."
+  },
+  {
+   "id": "riposo-di-daryn",
+   "type": "segnaposto",
+   "name": "Riposo di Daryn",
+   "x": 142.6,
+   "y": 37.8,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Daryn's Rest."
+  },
+  {
+   "id": "fauci-di-surtr",
+   "type": "battaglia",
+   "name": "Fauci di Surtr",
+   "x": 139.4,
+   "y": 52.7,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Surtr's Maw."
+  },
+  {
+   "id": "rovine-del-castello-morose",
+   "type": "rovina",
+   "name": "Rovine del castello Morose",
+   "x": 216.6,
+   "y": 49.2,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Ruins of Castle Morose."
+  },
+  {
+   "id": "porta-della-morte",
+   "type": "dungeon",
+   "name": "Porta della Morte",
+   "x": 191.2,
+   "y": 68.9,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Death's Door."
+  },
+  {
+   "id": "pozzo-di-nymmurh",
+   "type": "dungeon",
+   "name": "Pozzo di Nymmurh",
+   "x": 164.1,
+   "y": 78.9,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Nymmurh's Pit."
+  },
+  {
+   "id": "il-bosco-strisciante",
+   "type": "tana",
+   "name": "Il Bosco Strisciante",
+   "x": 160.2,
+   "y": 136.2,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: The Crawling Grove."
+  },
+  {
+   "id": "tumulo-di-cymrych-hugh",
+   "type": "rovina",
+   "name": "Tumulo di Cymrych Hugh",
+   "x": 194.4,
+   "y": 125.3,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Cairn of Cymrych Hugh."
+  },
+  {
+   "id": "kressilacc",
+   "type": "citta",
+   "name": "Kressilacc",
+   "x": 156,
+   "y": 182.6,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Kressilacc, regno sottomarino."
+  },
+  {
+   "id": "tumulo-di-thelgarr-ironhand",
+   "type": "rovina",
+   "name": "Tumulo di Thelgarr Ironhand",
+   "x": 95,
+   "y": 196.4,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Cairn of Thelgarr Ironhand."
+  },
+  {
+   "id": "icepeak",
+   "type": "segnaposto",
+   "name": "Icepeak",
+   "x": 97.5,
+   "y": 211.9,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Icepeak."
+  },
+  {
+   "id": "antro-di-dennin",
+   "type": "dungeon",
+   "name": "Antro di Dennin",
+   "x": 9.4,
+   "y": 230.5,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Dennin's Delve."
+  },
+  {
+   "id": "highpeak",
+   "type": "segnaposto",
+   "name": "Highpeak",
+   "x": 28.7,
+   "y": 284.2,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Highpeak."
+  },
+  {
+   "id": "nido-del-peryton-d-argento",
+   "type": "tana",
+   "name": "Nido del peryton d'argento",
+   "x": 87,
+   "y": 268.9,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Roost of the Silver Peryton."
+  },
+  {
+   "id": "totem-di-blackhoof",
+   "type": "segnaposto",
+   "name": "Totem di Blackhoof",
+   "x": 104.6,
+   "y": 267.8,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Blackhoof Totem."
+  },
+  {
+   "id": "guglie-di-bukhara",
+   "type": "segnaposto",
+   "name": "Guglie di Bukhara",
+   "x": 116.5,
+   "y": 300.6,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Bukhara Spires."
+  },
+  {
+   "id": "luce-negli-abissi",
+   "type": "segnaposto",
+   "name": "Luce negli abissi",
+   "x": 35.7,
+   "y": 334.6,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Light in the Deep."
+  },
+  {
+   "id": "torre-sommersa-di-flamsterd",
+   "type": "torre",
+   "name": "Torre sommersa di Flamsterd",
+   "x": 16.4,
+   "y": 382,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Flamsterd's Sunken Tower."
+  },
+  {
+   "id": "cicatrice-di-manann",
+   "type": "segnaposto",
+   "name": "Cicatrice di Manann",
+   "x": 119.8,
+   "y": 343,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Manann's Scar."
+  },
+  {
+   "id": "radura-del-signore-dei-gatti",
+   "type": "bosco_sacro",
+   "name": "Radura del Signore dei Gatti",
+   "x": 90,
+   "y": 365,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Glade of the Cat Lord."
+  },
+  {
+   "id": "castello-dei-teschi",
+   "type": "caer",
+   "name": "Castello dei Teschi",
+   "x": 126.5,
+   "y": 349.7,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Castle of Skulls."
+  },
+  {
+   "id": "grotta-delle-sirene",
+   "type": "dungeon",
+   "name": "Grotta delle sirene",
+   "x": 181,
+   "y": 344.3,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Sirens' Grotto."
+  },
+  {
+   "id": "boschetto-gelato-di-aurilandur",
+   "type": "bosco_sacro",
+   "name": "Boschetto gelato di Aurilandur",
+   "x": 159,
+   "y": 231.3,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Aurilandur's Icy Copse."
+  },
+  {
+   "id": "bosco-sacro-della-madre-terra",
+   "type": "bosco_sacro",
+   "name": "Bosco sacro della Madre Terra",
+   "x": 157.5,
+   "y": 306.5,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Sacred Grove of the Earthmother."
+  },
+  {
+   "id": "caer-allisynn",
+   "type": "caer",
+   "name": "Caer Allisynn",
+   "x": 194.4,
+   "y": 280.4,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Caer Allisynn."
+  },
+  {
+   "id": "casa-caduta-del-grande-raccolto",
+   "type": "caer",
+   "name": "Casa Caduta del Grande Raccolto",
+   "x": 151,
+   "y": 208.2,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Fallen House of the High Harvest."
+  },
+  {
+   "id": "cittadella-umbra",
+   "type": "caer",
+   "name": "Cittadella Umbra",
+   "x": 172,
+   "y": 245.4,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Citadel Umbra."
+  },
+  {
+   "id": "castello-di-darkhorn",
+   "type": "caer",
+   "name": "Castello di Darkhorn",
+   "x": 169.6,
+   "y": 283.6,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Darkhorn Castle."
+  },
+  {
+   "id": "tetauctaa",
+   "type": "pozzo_lunare",
+   "name": "Tetauctaa",
+   "x": 85.6,
+   "y": 371.3,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Tetauctaa."
+  },
+  {
+   "id": "pozzo-lunare-1",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 1",
+   "x": 52.8,
+   "y": 245.8,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-2",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 2",
+   "x": 26.8,
+   "y": 275.6,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-3",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 3",
+   "x": 99,
+   "y": 267.8,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-4",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 4",
+   "x": 113,
+   "y": 262.6,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-5",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 5",
+   "x": 112.4,
+   "y": 278.5,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-6",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 6",
+   "x": 126.5,
+   "y": 278.5,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-7",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 7",
+   "x": 81,
+   "y": 287.5,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-8",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 8",
+   "x": 155.3,
+   "y": 223,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-9",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 9",
+   "x": 144.3,
+   "y": 242.7,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-10",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 10",
+   "x": 131.2,
+   "y": 255.8,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-11",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 11",
+   "x": 146.8,
+   "y": 271.1,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-12",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 12",
+   "x": 165.4,
+   "y": 281.1,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-13",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 13",
+   "x": 157.2,
+   "y": 302,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-14",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 14",
+   "x": 146.5,
+   "y": 321.3,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-15",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 15",
+   "x": 186.7,
+   "y": 326.2,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-16",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 16",
+   "x": 175.8,
+   "y": 344,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-17",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 17",
+   "x": 231.6,
+   "y": 310.9,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-18",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 18",
+   "x": 185.6,
+   "y": 157.4,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-19",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 19",
+   "x": 244.2,
+   "y": 176,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-20",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 20",
+   "x": 188.4,
+   "y": 122,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-21",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 21",
+   "x": 167.7,
+   "y": 114.8,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  },
+  {
+   "id": "pozzo-lunare-22",
+   "type": "pozzo_lunare",
+   "name": "Pozzo lunare 22",
+   "x": 231.9,
+   "y": 229,
+   "hidden": true,
+   "notes": "Sulla mappa ufficiale: Moonwell."
+  }
+ ]
+}

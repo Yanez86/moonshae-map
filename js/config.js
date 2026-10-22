@@ -1,6 +1,6 @@
 // Costanti condivise: la mappa disegnata con pxl (art/moonshae.px.js), i livelli, i tipi di luogo.
 
-export const MAP = { widthMi: 760, heightMi: 680, pxPerMile: 2 }
+export const MAP = { widthMi: 269, heightMi: 392, pxPerMile: 4 }
 
 // Livelli esportati da pxl, dal basso verso l'alto.
 export const BASE_LAYERS = [
@@ -76,6 +76,6 @@ export const HEX_SIZES = [3, 6, 12, 24]
 
 // Nomi delle isole disegnati dall'app quando la mappa è troppo piccola per leggere quelli di pxl.
 export const ISLAND_LABELS = [
-  ["Gwynneth", 400, 470], ["Alaron", 590, 190], ["Oman", 352, 160], ["Norland", 150, 280], ["Moray", 140, 470],
-  ["Snowdown", 650, 470], ["Flamsterd", 212, 625], ["Isole Norheim", 160, 25], ["Korinn", 475, 8],
+  ["Gwynneth", 153, 335], ["Alaron", 222, 213], ["Oman", 129, 177], ["Norland", 41, 91], ["Moray", 24, 247],
+  ["Snowdown", 242, 337], ["Flamsterd", 38, 370], ["Isole Norheim", 116, 14], ["Korinn", 196, 21],
 ]
