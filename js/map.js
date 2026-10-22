@@ -1,11 +1,13 @@
 // La mappa su canvas: livelli pxl, nebbia, griglia esagonale, luoghi, righello.
 // Coordinate del mondo in miglia; la camera è il centro (cx, cy) e la scala s in pixel del device per miglio.
-// Lo zoom va a scatti in cui ogni pixel della mappa è un numero intero di pixel dello schermo.
+// Per restare veloce anche sul telefono: i livelli della mappa sono fusi in un'unica immagine, la nebbia
+// è un'immagine a parte rifatta solo quando cambia, la griglia traccia solo gli esagoni visibili.
 
 import { MAP, TYPE, BIOMES, ISLANDS, ISLAND_LABELS } from "./config.js"
 import { hexAt, hexCenter, hexCorners, hexesIn, hexKey, hexLabel, hexRadius } from "./hex.js"
 
-const LEVELS = [0.25, 0.5, 1, 2, 3, 4, 6, 8, 12, 16]   // pixel del device per pixel della mappa
+const MIN_LEVEL = 0.2, MAX_LEVEL = 16                   // pixel del device per pixel della mappa
+const BASE = ["mare", "terra", "fiumi", "foreste", "rilievi"]
 const INK = "#16171f", BONE = "#efe6cf", GOLD = "#e6bb4f", MAGIC = "#8f62c9"
 const FONT = '"Pixelify Sans", monospace'
 const SETTLEMENT_RANK = { capitale: 0, caer: 1, citta: 2, porto: 3, villaggio: 4 }
@@ -37,10 +39,14 @@ export class MapView {
   }
 
   // ---------------------------------------------------------------- dati
-  setLayers(images) { this.layers = images; this.request() }
+  setLayers(images) { this.layers = images; this.base = null; this.request() }
   setIcons(icons) { this.icons = icons; this.request() }
   setTerrain(pixels) { this.terrain = pixels }
-  setVisible(id, on) { this.visible[id] = on; this.request() }
+  setVisible(id, on) {
+    this.visible[id] = on
+    if (BASE.includes(id)) this.base = null
+    this.request()
+  }
   setData(data) {
     if (data.explored !== this.data.explored || data.settings?.hexMiles !== this.data.settings?.hexMiles) this.fogCache = null
     this.data = { ...this.data, ...data }
@@ -69,7 +75,7 @@ export class MapView {
   fitLevel() {
     const w = this.canvas.width, h = this.canvas.height
     const fit = Math.min(w / (MAP.widthMi * MAP.pxPerMile), h / (MAP.heightMi * MAP.pxPerMile))
-    return fit < 1 ? Math.max(LEVELS[0], fit) : LEVELS.filter((l) => l <= fit).pop()
+    return fit < 1 ? Math.max(MIN_LEVEL, fit) : Math.floor(fit)
   }
   fit(animate = true) { this.zoomTo(this.fitLevel(), MAP.widthMi / 2, MAP.heightMi / 2, animate) }
   // Zoom tenendo fermo il punto del mondo (ax, ay) sotto lo stesso punto dello schermo.
@@ -97,11 +103,19 @@ export class MapView {
     this.anim = requestAnimationFrame(step)
   }
   zoomStep(dir, sx, sy) {
-    const cur = LEVELS.reduce((b, l) => Math.abs(Math.log(l / this.level)) < Math.abs(Math.log(b / this.level)) ? l : b)
-    const next = LEVELS[Math.max(0, Math.min(LEVELS.length - 1, LEVELS.indexOf(cur) + dir))]
+    const next = Math.max(MIN_LEVEL, Math.min(MAX_LEVEL, this.level * (dir > 0 ? 2 : 0.5)))
     if (sx === undefined) return this.zoomTo(next, this.cx, this.cy, true, true)
     const p = this.toMap(sx, sy)
     this.zoomTo(next, p.x, p.y, true, false)
+  }
+  // Zoom immediato di un fattore, col punto sotto (sx, sy) che resta fermo (rotella, pizzico).
+  zoomBy(factor, sx, sy) {
+    const p = this.toMap(sx, sy), s = Math.max(MIN_LEVEL, Math.min(MAX_LEVEL, this.level * factor)) * MAP.pxPerMile
+    this.cx = p.x - (p.x - this.cx) * this.s / s
+    this.cy = p.y - (p.y - this.cy) * this.s / s
+    this.s = s
+    this.clampCamera()
+    this.request()
   }
   flyTo(x, y, minLevel = 3) { this.zoomTo(Math.max(minLevel, this.level), x, y, true, true) }
   clampCamera() {
@@ -162,11 +176,12 @@ export class MapView {
     const d = this.dpr
     return Math.max(1, Math.round(this.level < 1 ? d * 1.5 : d * 2))
   }
-  markerAt(sx, sy) {
+  // slop: margine in px css intorno all'icona (più largo per un dito).
+  markerAt(sx, sy, slop = 4) {
     const d = this.dpr, k = this.iconScale(), list = this.shownMarkers()
     for (let n = list.length - 1; n >= 0; n--) {
       const m = list[n], p = this.toScreen(m.x, m.y)
-      const f = this.frame(m), w = (f ? f.w : 40) * k / 2 + 4 * d, h = (f ? f.h : 12) * k / 2 + 4 * d
+      const f = this.frame(m), w = (f ? f.w : 40) * k / 2 + slop * d, h = (f ? f.h : 12) * k / 2 + slop * d
       if (Math.abs(sx * d - p.x) <= w && Math.abs(sy * d - p.y) <= h) return m
     }
     return null
@@ -190,12 +205,12 @@ export class MapView {
     ctx.fillRect(0, 0, W, H)
     ctx.setTransform(s, 0, 0, s, tx, ty)
     const small = this.level < 1
-    for (const id of ["mare", "terra", "fiumi", "foreste", "rilievi", "nomi"]) {
-      const img = this.layers[id]
-      if (img && this.visible[id] !== false && !(id === "nomi" && small)) ctx.drawImage(img, 0, 0, MAP.widthMi, MAP.heightMi)
-    }
     const view = { x0: (0 - tx) / s, y0: (0 - ty) / s, x1: (W - tx) / s, y1: (H - ty) / s }
-    if (this.data.settings.fog && this.visible.nebbia !== false) this.drawFog(tx, ty)
+    ctx.imageSmoothingEnabled = small
+    this.blit(this.composite(), view)
+    if (!small && this.layers.nomi && this.visible.nomi !== false) this.blit(this.layers.nomi, view)
+    ctx.imageSmoothingEnabled = false
+    if (this.data.settings.fog && this.visible.nebbia !== false) this.drawFog(view)
     if (this.visible.griglia !== false || this.mode === "explore") this.drawGrid(view, tx, ty)
     this.drawHover(tx, ty)
     ctx.setTransform(1, 0, 0, 1, 0, 0)
@@ -205,6 +220,26 @@ export class MapView {
     // l'impulso dei luoghi appena rivelati dura qualche secondo
     if ([...this.fresh.values()].some((t) => performance.now() - t < 6000)) this.request()
     this.ev.view?.()
+  }
+
+  // I livelli di base fusi in un canvas della misura della mappa: un drawImage per fotogramma.
+  composite() {
+    if (this.base) return this.base
+    const P = MAP.pxPerMile, c = document.createElement("canvas")
+    c.width = MAP.widthMi * P
+    c.height = MAP.heightMi * P
+    const g = c.getContext("2d")
+    for (const id of BASE) if (this.layers[id] && this.visible[id] !== false) g.drawImage(this.layers[id], 0, 0, c.width, c.height)
+    this.base = c
+    return c
+  }
+  // Copia solo il rettangolo dell'immagine che cade nello schermo.
+  blit(img, view) {
+    const P = img.width / MAP.widthMi
+    const x0 = Math.max(0, Math.floor(view.x0 * P)), y0 = Math.max(0, Math.floor(view.y0 * P))
+    const x1 = Math.min(img.width, Math.ceil(view.x1 * P)), y1 = Math.min(img.height, Math.ceil(view.y1 * P))
+    if (x1 <= x0 || y1 <= y0) return
+    this.ctx.drawImage(img, x0, y0, x1 - x0, y1 - y0, x0 / P, y0 / P, (x1 - x0) / P, (y1 - y0) / P)
   }
 
   drawIslandNames() {
@@ -225,55 +260,59 @@ export class MapView {
     ctx.restore()
   }
 
-  drawFog(tx, ty) {
-    const { ctx } = this, s = this.s, size = this.data.settings.hexMiles
+  // La nebbia è un'immagine della misura della mappa, col retino a scacchi sui pixel della mappa:
+  // si rifà solo quando cambia l'esplorazione, poi costa un drawImage.
+  drawFog(view) {
+    const { ctx } = this, size = this.data.settings.hexMiles, P = MAP.pxPerMile
     if (!this.fogCache) {
-      const path = new Path2D()
-      for (const [c, r] of hexesIn(0, 0, MAP.widthMi, MAP.heightMi, size)) {
-        if (this.data.explored.has(hexKey(c, r))) continue
-        const p = hexCorners(c, r, size)
-        path.moveTo(p[0][0], p[0][1])
-        for (let k = 1; k < 6; k++) path.lineTo(p[k][0], p[k][1])
-        path.closePath()
-      }
-      this.fogCache = path
-    }
-    if (!this.fogPattern) {
+      const c = document.createElement("canvas")
+      c.width = MAP.widthMi * P
+      c.height = MAP.heightMi * P
+      const g = c.getContext("2d")
       const t = document.createElement("canvas")
       t.width = t.height = 2
-      const g = t.getContext("2d")
-      g.fillStyle = "rgba(12, 18, 36, 0.8)"; g.fillRect(0, 0, 2, 2)
-      g.fillStyle = "rgba(12, 18, 36, 0.58)"; g.fillRect(0, 0, 1, 1); g.fillRect(1, 1, 1, 1)
-      this.fogPattern = ctx.createPattern(t, "repeat")
+      const tg = t.getContext("2d")
+      tg.fillStyle = "rgba(12, 18, 36, 0.8)"; tg.fillRect(0, 0, 2, 2)
+      tg.fillStyle = "rgba(12, 18, 36, 0.58)"; tg.fillRect(0, 0, 1, 1); tg.fillRect(1, 1, 1, 1)
+      g.fillStyle = g.createPattern(t, "repeat")
+      g.beginPath()
+      for (const [col, row] of hexesIn(0, 0, MAP.widthMi, MAP.heightMi, size)) {
+        if (this.data.explored.has(hexKey(col, row))) continue
+        const p = hexCorners(col, row, size)
+        g.moveTo(p[0][0] * P, p[0][1] * P)
+        for (let k = 1; k < 6; k++) g.lineTo(p[k][0] * P, p[k][1] * P)
+      }
+      g.fill()
+      this.fogCache = c
     }
-    // il retino resta fermo sullo schermo, a pixel doppi
-    const k = Math.max(2, Math.round(this.dpr * 2))
-    this.fogPattern.setTransform(new DOMMatrix([k / s, 0, 0, k / s, -tx / s, -ty / s]))
     ctx.save()
     ctx.globalAlpha = this.data.dm && !this.data.playerView ? 0.45 : 1
-    ctx.fillStyle = this.fogPattern
-    ctx.fill(this.fogCache)
+    ctx.imageSmoothingEnabled = this.level < 1
+    this.blit(this.fogCache, view)
     ctx.restore()
   }
 
   drawGrid(view, tx, ty) {
     const { ctx } = this, s = this.s, d = this.dpr, size = this.data.settings.hexMiles
-    const hexPx = size * s
-    let alpha = Math.max(0, Math.min(1, (hexPx - 7 * d) / (14 * d))) * 0.42
+    const hexPx = size * s, hexCss = hexPx / d
+    let alpha = Math.max(0, Math.min(1, (hexCss - 9) / 14)) * 0.42
     if (this.mode === "explore") alpha = Math.max(alpha, 0.5)
-    if (alpha <= 0.01) return
+    if (alpha <= 0.02) return
     const list = hexesIn(view.x0, view.y0, view.x1, view.y1, size)
-    const path = new Path2D()
+    // Tre lati per esagono (basso-sinistra, alto-sinistra, alto) coprono tutta la griglia una volta
+    // sola; una spezzata aperta, senza closePath, che con migliaia di esagoni è lentissimo.
+    ctx.save()
+    ctx.beginPath()
     for (const [c, r] of list) {
       const p = hexCorners(c, r, size)
-      path.moveTo(p[0][0], p[0][1])
-      for (let k = 1; k < 6; k++) path.lineTo(p[k][0], p[k][1])
-      path.closePath()
+      ctx.moveTo(p[2][0], p[2][1])
+      ctx.lineTo(p[3][0], p[3][1])
+      ctx.lineTo(p[4][0], p[4][1])
+      ctx.lineTo(p[5][0], p[5][1])
     }
-    ctx.save()
     ctx.lineWidth = Math.max(1, Math.round(d)) / s
     ctx.strokeStyle = `rgba(12, 16, 30, ${alpha})`
-    ctx.stroke(path)
+    ctx.stroke()
     ctx.restore()
     if (this.visible.coordinate && hexPx > 50 * d) {
       ctx.save()
@@ -441,17 +480,15 @@ export class MapView {
     c.addEventListener("pointermove", (e) => this.move(e))
     c.addEventListener("pointerup", (e) => this.up(e))
     c.addEventListener("pointercancel", (e) => this.up(e, true))
-    c.addEventListener("pointerleave", () => { if (!this.pointers.size) { this.hoverHex = null; this.hoverMarker = null; this.ev.hover?.(null); this.request() } })
+    c.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse" && !this.pointers.size) { this.hoverHex = null; this.hoverMarker = null; this.ev.hover?.(null); this.request() } })
     c.addEventListener("wheel", (e) => {
       e.preventDefault()
-      this.wheel = (this.wheel || 0) + e.deltaY
-      if (Math.abs(this.wheel) < 40) return
-      const r = c.getBoundingClientRect()
-      this.zoomStep(this.wheel < 0 ? 1 : -1, e.clientX - r.left, e.clientY - r.top)
-      this.wheel = 0
+      const r = c.getBoundingClientRect(), dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 400 : 1)
+      this.zoomBy(Math.exp(-Math.max(-300, Math.min(300, dy)) * 0.0022), e.clientX - r.left, e.clientY - r.top)
     }, { passive: false })
     c.addEventListener("dblclick", (e) => {
       if (this.mode === "measure") return this.ev.measureEnd?.()
+      if (performance.now() - (this.touchZoomAt || 0) < 700) return   // il doppio tocco l'ha già fatto
       const r = c.getBoundingClientRect()
       this.zoomStep(1, e.clientX - r.left, e.clientY - r.top)
     })
@@ -472,8 +509,9 @@ export class MapView {
       this.dragging = null
       return
     }
-    const m = this.data.dm && this.mode === "view" ? this.markerAt(p.x, p.y) : null
-    this.press = { x: p.x, y: p.y, cx: this.cx, cy: this.cy, moved: false, marker: m, t: performance.now() }
+    const touch = e.pointerType !== "mouse"
+    const m = this.data.dm && this.mode === "view" ? this.markerAt(p.x, p.y, touch ? 12 : 4) : null
+    this.press = { x: p.x, y: p.y, cx: this.cx, cy: this.cy, moved: false, marker: m, touch }
   }
   move(e) {
     const p = this.local(e)
@@ -481,7 +519,7 @@ export class MapView {
     if (this.pinch && this.pointers.size === 2) {
       const [a, b] = [...this.pointers.values()]
       const dist = Math.hypot(a.x - b.x, a.y - b.y)
-      const minS = LEVELS[0] * MAP.pxPerMile, maxS = LEVELS[LEVELS.length - 1] * MAP.pxPerMile
+      const minS = MIN_LEVEL * MAP.pxPerMile, maxS = MAX_LEVEL * MAP.pxPerMile
       this.s = Math.max(minS, Math.min(maxS, this.pinch.s * dist / this.pinch.dist))
       const mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, d = this.dpr
       this.cx = this.pinch.mid.x - (mid.x * d - this.canvas.width / 2) / this.s
@@ -493,7 +531,7 @@ export class MapView {
     const pr = this.press
     if (pr && this.pointers.has(e.pointerId)) {
       const dx = p.x - pr.x, dy = p.y - pr.y
-      if (!pr.moved && Math.hypot(dx, dy) > 5) pr.moved = true
+      if (!pr.moved && Math.hypot(dx, dy) > (pr.touch ? 9 : 5)) pr.moved = true
       if (!pr.moved) return
       if (pr.marker) {
         const w = this.toMap(p.x, p.y)
@@ -534,11 +572,7 @@ export class MapView {
   up(e, cancelled) {
     this.pointers.delete(e.pointerId)
     if (this.pinch) {
-      if (this.pointers.size < 2) {
-        const near = LEVELS.reduce((b, l) => Math.abs(Math.log(l / this.level)) < Math.abs(Math.log(b / this.level)) ? l : b)
-        this.zoomTo(near, this.cx, this.cy, true, true)
-        this.pinch = null
-      }
+      if (this.pointers.size < 2) this.pinch = null
       return
     }
     const pr = this.press
@@ -567,8 +601,20 @@ export class MapView {
       this.request()
       return
     }
-    const m = this.markerAt(p.x, p.y)
+    const m = this.markerAt(p.x, p.y, pr.touch ? 14 : 4)
     const h = hexAt(w.x, w.y, this.data.settings.hexMiles)
-    this.ev.click?.({ x: w.x, y: w.y, marker: m, hex: this.hexInfo(h.col, h.row) })
+    if (pr.touch && !m && this.mode === "view") {
+      // doppio tocco: avvicina; un tocco solo evidenzia l'esagono (niente hover sul telefono)
+      const now = performance.now(), last = this.lastTap
+      this.lastTap = { t: now, x: p.x, y: p.y }
+      if (last && now - last.t < 320 && Math.hypot(p.x - last.x, p.y - last.y) < 30) {
+        this.lastTap = null
+        this.touchZoomAt = now
+        return this.zoomStep(1, p.x, p.y)
+      }
+      this.hoverHex = h
+      this.request()
+    }
+    this.ev.click?.({ x: w.x, y: w.y, marker: m, hex: this.hexInfo(h.col, h.row), touch: pr.touch })
   }
 }

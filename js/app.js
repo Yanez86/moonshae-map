@@ -323,9 +323,18 @@ function onHover(info, marker) {
   $("#status-terrain").textContent = bits.join(" · ")
 }
 
-function onClick({ x, y, marker, hex }) {
+let tappedHex = null
+function onClick({ x, y, marker, hex, touch }) {
   if (state.mode === "add") return newMarker(x, y, true)
   if (marker) return selectMarker(marker)
+  if (touch) {
+    // sul telefono il primo tocco mostra l'esagono nella barra in basso, il secondo apre la scheda
+    const same = tappedHex === hex.label
+    tappedHex = same ? null : hex.label
+    onHover(hex, null)
+    if (!same) { if (!$("#panel-info").hidden) closeInfo(); return }
+    return showHex(hex)
+  }
   if (!$("#panel-info").hidden && !state.selected) {
     // un secondo tocco su un esagono già mostrato chiude il pannello
     if ($("#info-title").textContent === `Esagono ${hex.label}`) return closeInfo()
@@ -448,8 +457,10 @@ function toggleMenu(force) {
   m.hidden = !(force ?? m.hidden)
 }
 
+let lastScale = 0
 function updateScale() {
-  if (!view) return
+  if (!view || view.s === lastScale) return
+  lastScale = view.s
   const perMile = view.s / view.dpr                      // css px per miglio
   const nice = [1, 2, 3, 6, 12, 24, 48, 96, 192]
   const miles = nice.find((n) => n * perMile >= 60) ?? 192
